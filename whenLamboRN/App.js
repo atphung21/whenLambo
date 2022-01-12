@@ -10,19 +10,14 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <SafeAreaView style={styles.SafeArea}>
-        {/* <View style={styles.container}>
-          <Text>Hello, Andy! Testing 1,2,3.</Text>
-        </View> */}
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-          initalRouteName={'MainLayout'}
-        >
-          <Stack.Screen name="MainLayout" component={Tabs} />
-        </Stack.Navigator>
-      </SafeAreaView>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+        initalRouteName={'MainLayout'}
+      >
+        <Stack.Screen name="MainLayout" component={Tabs} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
@@ -35,7 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   SafeArea: {
-    flex: 2,
+    flex: 1,
   },
 });
 

@@ -2,6 +2,8 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home, Portfolio, Market, Profile } from '../Screens/index';
+import { COLORS } from '../Constants/theme';
+import { TabIcon } from '../Components/index';
 
 const Tab = createBottomTabNavigator();
 
@@ -9,17 +11,59 @@ const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        style: {
-          backgroundColor: 'blue',
-          borderTopColor: 'transparent',
+        tabBarShowLabel: false,
+        borderTopColor: 'transparent',
+        tabBarStyle: {
+          height: 140,
+          backgroundColor: COLORS.primary,
         },
       }}
     >
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Portfolio" component={Portfolio} />
-      <Tab.Screen name="Trade" component={Home} />
-      <Tab.Screen name="Market" component={Market} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return <TabIcon focused={focused} label="Home" />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Portfolio"
+        component={Portfolio}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return <TabIcon focused={focused} label="Portfolio" />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Trade"
+        component={Home}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return <TabIcon focused={focused} label="Trade" isMiddle={true} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Market"
+        component={Market}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return <TabIcon focused={focused} label="Market" />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return <TabIcon focused={focused} label="Profile" />;
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 };
