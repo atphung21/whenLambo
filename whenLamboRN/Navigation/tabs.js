@@ -3,13 +3,20 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home, Portfolio, Market, Profile } from '../Screens/index';
 import { COLORS, icons } from '../Constants/index';
 import { TabIcon, TabBarCustomButton } from '../Components/index';
+import { connect } from 'react-redux';
+import { setTradeModalVisibility } from '../Stores/Tabs/tabActions';
 
 
 
 const Tab = createBottomTabNavigator();
 
 
-const Tabs = () => {
+const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
+
+  function tradeButtonClickHandler () {
+    setTradeModalVisibility(!isTradeModalVisible)
+  };
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -26,7 +33,9 @@ const Tabs = () => {
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => {
-            return <TabIcon focused={focused} label="Home" icon={icons.home}/>;
+            if (!isTradeModalVisible) {
+              return <TabIcon focused={focused} label="Home" icon={icons.home}/>;
+            }
           },
         }}
       />
@@ -50,7 +59,7 @@ const Tabs = () => {
             return (
               <TabBarCustomButton
                 {...props}
-                onPress={() => console.log('Trade Button')}
+                onPress={() => tradeButtonClickHandler()}
               />
             );
           },
@@ -78,4 +87,19 @@ const Tabs = () => {
   );
 };
 
-export default Tabs;
+
+function mapStateToProps(state) {
+  return {
+    isTradeModalVisible: state.tabReducer.isTradeModalVisible
+  }
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setTradeModalVisibility: (isVisible) => {
+       return dispatch(setTradeModalVisibility(isVisible));
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tabs);
