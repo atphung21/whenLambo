@@ -2,10 +2,14 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { COLORS, SIZES, icons } from '../Constants/index';
 
-const MainLayout = () => {
+const MainLayout = ({ children }) => {
   return (
-    <View>
-      <Text>Main Layout</Text>
+    <View
+      style={{
+        flex: 1,
+      }}
+    >
+      {children}
     </View>
   );
 };

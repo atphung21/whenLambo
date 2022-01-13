@@ -7,6 +7,21 @@ import { TabIcon } from '../Components/index';
 
 const Tab = createBottomTabNavigator();
 
+const TabBarCustomButton = ({ children, onPress }) => {
+  return (
+    <TouchableOpacity
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+      onPress={onPress}
+    >
+      {children}
+    </TouchableOpacity>
+  );
+};
+
 const Tabs = () => {
   return (
     <Tab.Navigator
@@ -43,6 +58,14 @@ const Tabs = () => {
         options={{
           tabBarIcon: ({ focused }) => {
             return <TabIcon focused={focused} label="Trade" isMiddle={true} />;
+          },
+          tabBarButton: (props) => {
+            return (
+              <TabBarCustomButton
+                {...props}
+                onPress={() => console.log('Trade Button')}
+              />
+            );
           },
         }}
       />
