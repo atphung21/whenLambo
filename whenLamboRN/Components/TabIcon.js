@@ -22,7 +22,9 @@ const TabIcon = ({ isMiddle, label, focused, iconStyle, icon }) => {
             height: 25,
             width: 25,
             tintColor: COLORS.white,
+            ...iconStyle
           }}
+
         />
         <Text
           style={{

@@ -1,8 +1,33 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Animated } from 'react-native';
 import { COLORS, SIZES, icons } from '../Constants/index';
+import { IconTextButton } from '../Components/index';
+import { connect } from 'react-redux';
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, isTradeModalVisible }) => {
+
+  const modalAnimatedValue = React.useRef(new Animated.Value(0)).current;
+
+  React.useEffect(() => {
+    if (isTradeModalVisible) {
+      Animated.timing(modalAnimatedValue, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: false,
+      }).start();
+    } else {
+      Animated.timing(modalAnimatedValue, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: false,
+      }).start();
+    }
+  });
+
+    const modalY = modalAnimatedValue.interpolate({
+      inputRange: [0,1],
+      outputRange: [SIZES.height, SIZES.height - 395]
+    })
   return (
     <View
       style={{
@@ -10,8 +35,45 @@ const MainLayout = ({ children }) => {
       }}
     >
       {children}
+      {/* Modal */}
+      <Animated.View
+        style={{
+          position: 'absolute',
+          top: modalY,
+          left: 0,
+          height: 200,
+          width: '100%',
+          padding: SIZES.padding,
+          backgroundColor: COLORS.primary
+        }}
+        >
+          <IconTextButton
+            label= 'Transfer'
+            icon={icons.send}
+            onPress={() => console.log("Transfer")}
+          />
+           <IconTextButton
+            label= 'Withdraw'
+            icon={icons.withdraw}
+            onPress={() => console.log("Withdraw")}
+            containerStyle={{
+              marginTop: 15,
+            }}
+          />
+        </Animated.View>
     </View>
   );
 };
 
-export default MainLayout;
+function mapStateToProps(state) {
+  return {
+    isTradeModalVisible: state.tabReducer.isTradeModalVisible,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {}
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainLayout);
