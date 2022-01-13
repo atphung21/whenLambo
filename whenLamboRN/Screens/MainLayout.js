@@ -26,7 +26,7 @@ const MainLayout = ({ children, isTradeModalVisible }) => {
 
     const modalY = modalAnimatedValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [615, SIZES.height - 395]
+      outputRange: [615, SIZES.height - 390]
     });
 
   return (
@@ -36,6 +36,21 @@ const MainLayout = ({ children, isTradeModalVisible }) => {
       }}
     >
       {children}
+      {/* Dim Background */}
+      {isTradeModalVisible &&
+      <Animated.View
+        style={{
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          backgroundColor: COLORS.transparentBlack
+        }}
+        opacity={modalAnimatedValue}
+        />
+      }
+
       {/* Modal */}
       <Animated.View
         style={{
