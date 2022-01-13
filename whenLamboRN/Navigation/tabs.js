@@ -2,8 +2,9 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home, Portfolio, Market, Profile } from '../Screens/index';
-import { COLORS } from '../Constants/theme';
+import { COLORS, icons } from '../Constants/index';
 import { TabIcon } from '../Components/index';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -39,7 +40,7 @@ const Tabs = () => {
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => {
-            return <TabIcon focused={focused} label="Home" />;
+            return <TabIcon focused={focused} label="Home" icon={icons.home}/>;
           },
         }}
       />
@@ -48,7 +49,7 @@ const Tabs = () => {
         component={Portfolio}
         options={{
           tabBarIcon: ({ focused }) => {
-            return <TabIcon focused={focused} label="Portfolio" />;
+            return <TabIcon focused={focused} label="Portfolio" icon={icons.briefcase} />;
           },
         }}
       />
@@ -57,7 +58,7 @@ const Tabs = () => {
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => {
-            return <TabIcon focused={focused} label="Trade" isMiddle={true} />;
+            return ( <TabIcon focused={focused} label="Trade" isMiddle={true} icon={icons.trade}/>)
           },
           tabBarButton: (props) => {
             return (
@@ -74,7 +75,7 @@ const Tabs = () => {
         component={Market}
         options={{
           tabBarIcon: ({ focused }) => {
-            return <TabIcon focused={focused} label="Market" />;
+            return <TabIcon focused={focused} label="Market" icon={icons.market} />;
           },
         }}
       />
@@ -83,7 +84,7 @@ const Tabs = () => {
         component={Profile}
         options={{
           tabBarIcon: ({ focused }) => {
-            return <TabIcon focused={focused} label="Profile" />;
+            return <TabIcon focused={focused} label="Profile" icon={icons.profile}/>;
           },
         }}
       />
