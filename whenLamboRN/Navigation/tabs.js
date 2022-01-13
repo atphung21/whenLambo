@@ -36,6 +36,13 @@ const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
             }
           },
         }}
+        listeners={{
+          tabPress: e => {
+            if (isTradeModalVisible) {
+              e.preventDefault();
+            }
+          }
+        }}
       />
       <Tab.Screen
         name="Portfolio"
@@ -52,6 +59,13 @@ const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
               );
             }
           },
+        }}
+        listeners={{
+          tabPress: e => {
+            if (isTradeModalVisible) {
+              e.preventDefault();
+            }
+          }
         }}
       />
       <Tab.Screen
@@ -90,6 +104,13 @@ const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
             }
           },
         }}
+        listeners={{
+          tabPress: e => {
+            if (isTradeModalVisible) {
+              e.preventDefault();
+            }
+          }
+        }}
       />
       <Tab.Screen
         name="Profile"
@@ -106,6 +127,13 @@ const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
               );
             }
           },
+        }}
+        listeners={{
+          tabPress: e => {
+            if (isTradeModalVisible) {
+              e.preventDefault();
+            }
+          }
         }}
       />
     </Tab.Navigator>
