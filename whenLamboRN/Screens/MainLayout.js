@@ -22,12 +22,13 @@ const MainLayout = ({ children, isTradeModalVisible }) => {
         useNativeDriver: false,
       }).start();
     }
-  });
+  }, [isTradeModalVisible]);
 
     const modalY = modalAnimatedValue.interpolate({
-      inputRange: [0,1],
-      outputRange: [SIZES.height, SIZES.height - 395]
-    })
+      inputRange: [0, 1],
+      outputRange: [615, SIZES.height - 395]
+    });
+
   return (
     <View
       style={{
@@ -41,7 +42,6 @@ const MainLayout = ({ children, isTradeModalVisible }) => {
           position: 'absolute',
           top: modalY,
           left: 0,
-          height: 200,
           width: '100%',
           padding: SIZES.padding,
           backgroundColor: COLORS.primary
