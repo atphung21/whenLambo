@@ -1,27 +1,13 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home, Portfolio, Market, Profile } from '../Screens/index';
 import { COLORS, icons } from '../Constants/index';
-import { TabIcon } from '../Components/index';
+import { TabIcon, TabBarCustomButton } from '../Components/index';
+
 
 
 const Tab = createBottomTabNavigator();
 
-const TabBarCustomButton = ({ children, onPress }) => {
-  return (
-    <TouchableOpacity
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-      onPress={onPress}
-    >
-      {children}
-    </TouchableOpacity>
-  );
-};
 
 const Tabs = () => {
   return (
