@@ -5,7 +5,6 @@ import { IconTextButton } from '../Components/index';
 import { connect } from 'react-redux';
 
 const MainLayout = ({ children, isTradeModalVisible }) => {
-
   const modalAnimatedValue = React.useRef(new Animated.Value(0)).current;
 
   React.useEffect(() => {
@@ -24,10 +23,10 @@ const MainLayout = ({ children, isTradeModalVisible }) => {
     }
   }, [isTradeModalVisible]);
 
-    const modalY = modalAnimatedValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: [615, SIZES.height - 395]
-    });
+  const modalY = modalAnimatedValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: [715, SIZES.height - 305],
+  });
 
   return (
     <View
@@ -37,19 +36,19 @@ const MainLayout = ({ children, isTradeModalVisible }) => {
     >
       {children}
       {/* Dim Background */}
-      {isTradeModalVisible &&
-      <Animated.View
-        style={{
-          position: 'absolute',
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          backgroundColor: COLORS.transparentBlack
-        }}
-        opacity={modalAnimatedValue}
+      {isTradeModalVisible && (
+        <Animated.View
+          style={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            backgroundColor: COLORS.transparentBlack,
+          }}
+          opacity={modalAnimatedValue}
         />
-      }
+      )}
 
       {/* Modal */}
       <Animated.View
@@ -59,23 +58,23 @@ const MainLayout = ({ children, isTradeModalVisible }) => {
           left: 0,
           width: '100%',
           padding: SIZES.padding,
-          backgroundColor: COLORS.primary
+          backgroundColor: COLORS.primary,
         }}
-        >
-          <IconTextButton
-            label= 'Transfer'
-            icon={icons.send}
-            onPress={() => console.log("Transfer")}
-          />
-           <IconTextButton
-            label= 'Withdraw'
-            icon={icons.withdraw}
-            onPress={() => console.log("Withdraw")}
-            containerStyle={{
-              marginTop: 15,
-            }}
-          />
-        </Animated.View>
+      >
+        <IconTextButton
+          label="Transfer"
+          icon={icons.send}
+          onPress={() => console.log('Transfer')}
+        />
+        <IconTextButton
+          label="Withdraw"
+          icon={icons.withdraw}
+          onPress={() => console.log('Withdraw')}
+          containerStyle={{
+            marginTop: 15,
+          }}
+        />
+      </Animated.View>
     </View>
   );
 };
@@ -87,8 +86,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {}
-};
-
+  return {};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainLayout);

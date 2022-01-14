@@ -23,10 +23,9 @@ const dummyData = [
 ];
 
 const Home = ({ getHoldings, getCoinMarket, myHoldings, coins }) => {
-
   useFocusEffect(
     React.useCallback(() => {
-      getHoldings(holdings = dummyData);
+      getHoldings((holdings = dummyData));
       getCoinMarket();
     }, [])
   );
@@ -35,22 +34,24 @@ const Home = ({ getHoldings, getCoinMarket, myHoldings, coins }) => {
     return (
       <View
         style={{
-          paddingHorizontal: SIZES.padding
+          paddingHorizontal: SIZES.padding,
+          borderBottomLeftRadius: 25,
+          borderBottomRightRadius: 25,
+          backgroundColor: COLORS.gray
         }}
-        >
+      >
         {/* {Balance Info} */}
-          <BalanceInfo
-            title='Your Wallet'
-            displayAmount='45,000'
-            changePer='2.3'
-            containerStyle={{
-              marginTop: 50
-            }}
-            />
+        <BalanceInfo
+          title="Your Wallet"
+          displayAmount="45,000"
+          changePer="2.3"
+          containerStyle={{
+            marginTop: 50,
+          }}
+        />
         {/* {Buttons} */}
-
-        </View>
-    )
+      </View>
+    );
   }
 
   return (
@@ -58,14 +59,13 @@ const Home = ({ getHoldings, getCoinMarket, myHoldings, coins }) => {
       <View
         style={{
           flex: 1,
-          backgroundColor: COLORS.black
-      }}>
-      {/* {Header} */}
-      {renderWalletInfoSection()}
-       {/* {Chart} */}
-      {/* {Top Crytos} */}
-
-
+          backgroundColor: COLORS.black,
+        }}
+      >
+        {/* {Header} */}
+        {renderWalletInfoSection()}
+        {/* {Chart} */}
+        {/* {Top Crytos} */}
       </View>
     </MainLayout>
   );

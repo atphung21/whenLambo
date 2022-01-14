@@ -17,9 +17,10 @@ const Tabs = ({ setTradeModalVisibility, isTradeModalVisible }) => {
     <Tab.Navigator
       screenOptions={{
         tabBarShowLabel: false,
-        borderTopColor: 'transparent',
+        headerShown: false,
         tabBarStyle: {
           height: 140,
+          borderTopColor: 'transparent',
           backgroundColor: COLORS.primary,
         },
       }}

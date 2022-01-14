@@ -16,7 +16,7 @@ const store = createStore(
   applyMiddleware(thunk)
 );
 
-const App = () => {
+const App = ({ screenOptions }) => {
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -26,7 +26,13 @@ const App = () => {
           }}
           initalRouteName={'MainLayout'}
         >
-          <Stack.Screen name="MainLayout" component={Tabs} />
+          <Stack.Screen
+            name="MainLayout"
+            component={Tabs}
+            options={{
+              headerShown: false,
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
