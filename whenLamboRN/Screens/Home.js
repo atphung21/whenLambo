@@ -23,12 +23,20 @@ const dummyData = [
 ];
 
 const Home = ({ getHoldings, getCoinMarket, myHoldings, coins }) => {
+
   useFocusEffect(
     React.useCallback(() => {
-      getHoldings((holdings = dummyData));
-      getCoinMarket();
+      getHoldings(holdings = dummyData)
+      getCoinMarket()
     }, [])
-  );
+  )
+
+
+  console.log('myHoldingsHome: ', myHoldings);
+  let totalWallet = myHoldings.reduce((acc, holdings) => acc + (holdings.total), 0);
+
+
+  console.log('totalWallet: ', totalWallet)
 
   function renderWalletInfoSection() {
     return (
@@ -43,7 +51,7 @@ const Home = ({ getHoldings, getCoinMarket, myHoldings, coins }) => {
         {/* {Balance Info} */}
         <BalanceInfo
           title="Your Wallet"
-          displayAmount="45,000"
+          displayAmount={totalWallet}
           changePer="2.3"
           containerStyle={{
             marginTop: 50,

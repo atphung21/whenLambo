@@ -82,6 +82,16 @@ const BalanceInfo = ({ title, changePer, displayAmount, containerStyle }) => {
         >
           {changePer}%
         </Text>
+        <Text
+          style={{
+            marginLeft: SIZES.base,
+            alignSelf: 'flex-end',
+            ...FONTS.h5,
+            color: COLORS.lightGray3,
+          }}
+        >
+          7d Change
+        </Text>
       </View>
     </View>
   );

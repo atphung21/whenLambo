@@ -78,7 +78,7 @@ export function getHoldings(
             };
           });
               console.log('myHoldings: ', myHoldings)
-          dispatch(getHoldingsSuccess(myHoldings));
+          dispatch(getHoldingSuccess(myHoldings));
         } else {
           dispatch(getHoldingFailure(response.data));
         }
