@@ -35,7 +35,7 @@ export function getHoldings(
   return (dispatch) => {
     dispatch(getHoldingsBegin());
 
-    let ids = holdings.map((item) => item).join(',');
+    let ids = holdings.map((item) => item.id).join(',');
     let apiURL =
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=${orderBy}&per_page=${perPage}&page=${page}&sparkline=${sparkline}&price_change_percentage=${priceChangePerc}&ids=${ids}`;
 
@@ -46,13 +46,14 @@ export function getHoldings(
         Accept: 'application/json',
       },
     }).then((response) => {
-      console.log('GetHoldings:', response)
-        if (response == 200) {
+      console.log('GetHoldings:', response.data)
+        if (response.status == 200) {
           //Massage data
           let myHoldings = response.data.map((item) => {
             //retrive current holdings -> current quantity
             let coin = holdings.find((a) => a.id == item.id);
 
+            console.log('Coins: ', coin)
             //Price from 7 days ago
             let price7d =
               item.current_price /
@@ -76,7 +77,7 @@ export function getHoldings(
               },
             };
           });
-
+              console.log('myHoldings: ', myHoldings)
           dispatch(getHoldingsSuccess(myHoldings));
         } else {
           dispatch(getHoldingFailure(response.data));
