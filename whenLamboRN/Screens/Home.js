@@ -4,6 +4,8 @@ import { MainLayout } from './index';
 import { connect } from 'react-redux';
 import { getHoldings, getCoinMarket } from '../Stores/Market/marketActions';
 import { useFocusEffect } from '@react-navigation/native';
+import { COLORS, SIZES, FONTS } from '../Constants/index';
+import { BalanceInfo } from '../Components/index';
 
 const dummyData = [
   {
@@ -24,14 +26,46 @@ const Home = ({ getHoldings, getCoinMarket, myHoldings, coins }) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      getHoldings((holdings = dummyData));
+      getHoldings(holdings = dummyData);
+      getCoinMarket();
     }, [])
   );
 
+  function renderWalletInfoSection() {
+    return (
+      <View
+        style={{
+          paddingHorizontal: SIZES.padding
+        }}
+        >
+        {/* {Balance Info} */}
+          <BalanceInfo
+            title='Your Wallet'
+            displayAmount='45,000'
+            changePer='2.3'
+            containerStyle={{
+              marginTop: 50
+            }}
+            />
+        {/* {Buttons} */}
+
+        </View>
+    )
+  }
+
   return (
     <MainLayout>
-      <View>
-        <Text>Home TEST</Text>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: COLORS.black
+      }}>
+      {/* {Header} */}
+      {renderWalletInfoSection()}
+       {/* {Chart} */}
+      {/* {Top Crytos} */}
+
+
       </View>
     </MainLayout>
   );
